@@ -35,6 +35,13 @@ Some of the ID corrections assume that the id field read from the source has
 not been white space stripped. Care must be taken that the way a data model 
 is read before input to this module, is coherent to the way corrections are
 performed for that data model.
+
+DEV NOTES:
+As with platform_type in metmetpy, dataset must be a paramter to this
+functions, not just data model. The dataset.py will have the correction functions
+(like icoads_r3000.py in here)
+
+
                           
 @author: iregon
 """
