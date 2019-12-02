@@ -10,10 +10,10 @@ Does not account for input dataframes/series stored in TextParsers: as opposed
 to correction modules, the output is only a boolean series which is external
 to the input data ....
 
-Validations are data model and deck specific following patterns stored in
- ./lib/data_model.json.: multiple decks in input data are not supported.
+Validations are dataset and deck specific following patterns stored in
+ ./lib/dataset.json.: multiple decks in input data are not supported.
 
-If the data model is not available in the lib, the module
+If the dataset is not available in the lib, the module
 will return with no output (will break full processing downstream of its
 invocation) logging an error.
 
@@ -56,7 +56,7 @@ tool_name = 'metmetpy'
 module_path = os.path.dirname(os.path.abspath(__file__))
 
 
-def validate(data,data_model,dck,sid = None,blank = False, log_level = 'INFO'):
+def validate(data,dataset,data_model,dck,sid = None,blank = False, log_level = 'INFO'):
     logger = logging_hdlr.init_logger(__name__,level = log_level)
 
     if not isinstance(data,pd.DataFrame) and not isinstance(data,pd.Series):
@@ -73,10 +73,10 @@ def validate(data,data_model,dck,sid = None,blank = False, log_level = 'INFO'):
 
     idSeries = data[id_col]
 
-    data_model_file = os.path.join(module_path,'lib',data_model+ '.json')
+    data_model_file = os.path.join(module_path,'lib',dataset+ '.json')
     if not os.path.isfile(data_model_file):
-        logger.error('Input data model "{}" has no ID deck library'
-                       .format(data_model))
+        logger.error('Input dataset "{}" has no ID deck library'
+                       .format(dataset))
         return
 
     with open(data_model_file) as fileObj:
