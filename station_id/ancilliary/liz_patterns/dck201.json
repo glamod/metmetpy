@@ -1,0 +1,9 @@
+{
+   "dck":201,
+   "patterns":{
+      "folio":"^[0-9]{5}$",
+      "blank":"^$"
+   },
+   "corrections":{}
+}
+

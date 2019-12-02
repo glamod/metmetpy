@@ -1,0 +1,9 @@
+{
+   "dck":733,
+   "patterns":{
+      "north_pole_station":"^NP-[0-9]{2}$",
+      "north_pole_station":"^NP-[0-9]{1}$"
+   },
+   "corrections":{}
+   
+}

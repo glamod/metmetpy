@@ -1,0 +1,9 @@
+{
+   "dck":213,
+   "patterns":{
+      "hms":"^$",
+      "folio":"^[0-9]{5}$"
+   },
+   "corrections":{}
+}
+

@@ -1,0 +1,9 @@
+{
+   "dck":734,
+   "patterns":{
+      "arctic_drift_station":"^FRAM$",
+      "arctic_drift_station":"^MAUD$"
+   },
+   "corrections":{}
+}
+

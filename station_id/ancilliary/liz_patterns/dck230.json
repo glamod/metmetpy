@@ -1,0 +1,8 @@
+{
+   "dck":230,
+   "patterns":{
+      "IMMPC":"^[0-9]{5}$"
+   },
+   "corrections":{}
+}
+

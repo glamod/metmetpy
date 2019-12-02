@@ -1,0 +1,8 @@
+{
+   "dck":246,
+   "patterns":{
+      "acre_shipname":"^[ 0-9A-Za-z\\\\_]{1,}$",
+      "acre_shipname":"SOPHIA-TP"
+   },
+   "corrections":{}
+}
