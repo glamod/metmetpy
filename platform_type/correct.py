@@ -41,7 +41,7 @@ import importlib
 from io import StringIO
 from metmetpy.common import logging_hdlr
 from metmetpy.common import functions
-from .. import properties
+from metmetpy import properties
 import pandas as pd
 
 

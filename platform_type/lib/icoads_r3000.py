@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 from metmetpy.common import functions
 import re
-from .. import properties
+from metmetpy import properties
 
 
 def deck_700_imma1(data):
