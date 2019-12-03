@@ -10,7 +10,7 @@ import os
 import pandas as pd
 import numpy as np
 from metmetpy.common import functions
-from .. import properties
+from metmetpy import properties
 from . import model_datetimes
 
 module_path = os.path.dirname(os.path.abspath(__file__))

@@ -15,7 +15,7 @@ registered in ../properties.py in metadata_datamodels.
 import math
 import pandas as pd
 import numpy as np
-from .. import properties
+from metmetpy import properties
 
 # ---------------- General purpose functions ----------------------------------
 def datetime_decimalhour_to_HM(ds):
