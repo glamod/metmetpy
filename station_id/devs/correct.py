@@ -56,7 +56,7 @@ from io import StringIO
 from unidecode import unidecode
 from string import punctuation
 from metmetpy.common import logging_hdlr
-from .. import properties
+from metmetpy import properties
 
 class smart_dict(dict):
     def __init__(self, *args):

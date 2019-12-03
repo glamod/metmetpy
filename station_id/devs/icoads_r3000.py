@@ -11,7 +11,7 @@ import json
 import pandas as pd
 from metmetpy.common import functions
 import re
-from .. import properties
+from metmetpy import properties
 from metmetpy.common import functions
 
 module_path = os.path.dirname(os.path.abspath(__file__))
