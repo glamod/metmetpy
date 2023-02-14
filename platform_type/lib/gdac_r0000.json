@@ -1,0 +1,8 @@
+{
+    "717": {
+    "method": "fillna","fill_value":"5"
+    },
+    "717": {
+    "method": "function","function":"deck_717_immt"
+    }
+}

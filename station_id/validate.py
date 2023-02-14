@@ -56,10 +56,11 @@ tool_name = 'metmetpy'
 module_path = os.path.dirname(os.path.abspath(__file__))
 
 
-def validate(data,dataset,data_model,dck,sid = None,blank = False, log_level = 'INFO'):
+def validate(
+        data, dataset, data_model, dck, sid=None,blank=False,log_level='INFO'):
     logger = logging_hdlr.init_logger(__name__,level = log_level)
 
-    if not isinstance(data,pd.DataFrame) and not isinstance(data,pd.Series):
+    if not isinstance(data, pd.DataFrame) and not isinstance(data,pd.Series):
         logger.error('Input data must be a pd.DataFrame or pd.Series.\
                      Input data type is {}'.format(type(data)))
         return

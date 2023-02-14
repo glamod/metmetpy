@@ -47,21 +47,22 @@ import pandas as pd
 
 tool_name = 'metmetpy'
 module_path = os.path.dirname(os.path.abspath(__file__))
-fix_methods_path = os.path.join(module_path,'lib')
+fix_methods_path = os.path.join(module_path, 'lib')
 
 #functions_module_path = os.path.join(module_path,'correction_functions')
 #functions_module_tree = functions_module_path[functions_module_path.find('/' + tool_name + '/')+1:].split('/')
 #pt_functions_mdl = importlib.import_module('.'.join(functions_module_tree), package=None)
 
 
-def correct_it(data,dataset,data_model,deck,pt_col,fix_methods, log_level= 'INFO'):
+def correct_it(data, dataset, data_model, deck, pt_col, fix_methods,
+               log_level= 'INFO'):
     logger = logging_hdlr.init_logger(__name__,level = log_level)
 
     deck_fix = fix_methods.get(deck)
 
     if not deck_fix:
-        logger.info('No platform type fixes to apply to deck {0} data from\
-                     dataset {1}'.format(deck,dataset))
+        logger.info('No platform type fixes to apply to deck {0} \
+                    data from dataset {1}'.format(deck, dataset))
         return data
 
 #    Find fix method
@@ -74,8 +75,10 @@ def correct_it(data,dataset,data_model,deck,pt_col,fix_methods, log_level= 'INFO
         transform = deck_fix.get('function')
         logger.info('Applying fix function {}'.format(transform))
         functions_module_path = os.path.join(fix_methods_path,dataset)
-        functions_module_tree = functions_module_path[functions_module_path.find('/' + tool_name + '/')+1:].split('/')
-        pt_functions_mdl = importlib.import_module('.'.join(functions_module_tree), package=None)
+        functions_module_tree = functions_module_path[
+            functions_module_path.find('/' + tool_name + '/')+1:].split('/')
+        pt_functions_mdl = importlib.import_module('.'.join(
+            functions_module_tree), package=None)
         trans = eval('pt_functions_mdl.' + transform)
         return trans(data)
     else:
@@ -83,12 +86,13 @@ def correct_it(data,dataset,data_model,deck,pt_col,fix_methods, log_level= 'INFO
                      .format(deck_fix.get('method')))
         return
 
-def correct(data,dataset,data_model,deck,log_level= 'INFO'):
+def correct(data, dataset, data_model, deck, log_level = 'INFO'):
     logger = logging_hdlr.init_logger(__name__,level = log_level)
 
-    fix_file = os.path.join(fix_methods_path,dataset+ '.json')
+    fix_file = os.path.join(fix_methods_path, dataset+ '.json')
     if not os.path.isfile(fix_file):
-        logger.error('Dataset {} not included in platform library'.format(dataset))
+        logger.error('Dataset {} not included in platform library'.format(
+            dataset))
         return
     else:
         with open(fix_file,'r') as fileObj:
@@ -102,16 +106,18 @@ def correct(data,dataset,data_model,deck,log_level= 'INFO'):
         return
 
     if isinstance(data,pd.DataFrame):
-        data = correct_it(data,dataset,data_model,deck,pt_col,fix_methods, log_level= 'INFO')
+        data = correct_it(data, dataset, data_model, deck, pt_col, 
+                          fix_methods, log_level= 'INFO')        
         return data
-    elif isinstance(data,pd.io.parsers.TextFileReader):
-        read_params = ['chunksize','names','dtype','parse_dates','date_parser',
-                       'infer_datetime_format']
+    elif isinstance(data, pd.io.parsers.TextFileReader):
+        read_params = ['chunksize', 'names', 'dtype', 'parse_dates',
+                       'date_parser', 'infer_datetime_format']
         read_dict = {x:data.orig_options.get(x) for x in read_params}
         buffer = StringIO()
         for df in data:
-            df = correct_it(df,dataset,data_model,deck,pt_col,fix_methods, log_level= 'INFO')
-            df.to_csv(buffer,header = False, index = False, mode = 'a')
+            df = correct_it(df, dataset, data_model, deck, pt_col, 
+                            fix_methods, log_level= 'INFO')
+            df.to_csv(buffer, header=False, index=False, mode='a')
 
         buffer.seek(0)
         return pd.read_csv(buffer,**read_dict)

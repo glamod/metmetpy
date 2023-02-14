@@ -13,7 +13,6 @@ from metmetpy.common import functions
 import re
 from metmetpy import properties
 
-
 def deck_700_imma1(data):
     #idt=="NNNNN" & dck==700 & sid == 147 & pt == 5
     drifters = '7'
@@ -33,6 +32,7 @@ def deck_700_imma1(data):
 
     return data
 
+
 def deck_892_imma1(data):
     #idt=="NNNNN" & dck==892 & sid == 29 & pt == 5
     sid = '29'
@@ -49,3 +49,4 @@ def deck_892_imma1(data):
     data[pt_col].loc[loc] = buoys
 
     return data
+
